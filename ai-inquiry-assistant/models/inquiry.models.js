@@ -14,8 +14,11 @@ const inquirySchema = new mongoose.Schema({
   deadline: Date,
   clinicalNotes: String,
   requiredSpecialty: [String],
-  createdAt : {type:Date , default: Date.now()}
+  patientAge: Number,
+  insuranceType: String,
+  preferredLanguage: String,
 
+  createdAt: { type: Date, default: Date.now() },
 });
 
 export default mongoose.model("Inquiry", inquirySchema);
