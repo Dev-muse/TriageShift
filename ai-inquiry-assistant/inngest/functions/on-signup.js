@@ -9,7 +9,7 @@ export const onUserSignUp = inngest.createFunction(
   { event: "user/signup" },
   async ({ event, step }) => {
     try {
-      // get email data passed into event
+      // get email data from event object
       const { email } = event.data;
 
       //step 1: check db for user
@@ -23,8 +23,7 @@ export const onUserSignUp = inngest.createFunction(
         return userObject;
       });
 
-      // step 2 :
-
+      // step 2 :send welcome email
       step.run("send-welcome-email", async () => {
         const subject = "Welcome to TriageShift";
         const message = ` Hi , 
