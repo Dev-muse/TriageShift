@@ -94,3 +94,43 @@ export const logout = async (req, res) => {
     res.status(500).json({ error: "Logout failed", details: error.message });
   }
 };
+
+export const updateUser = async (req, res) => {
+  const { specialities = [], role, email } = req.body;
+
+  try {
+    if (req.user.role !== "admin") {
+      res.status(401).json({ error: "User forbidden" });
+    }
+
+    const user = await User.findOne({ email });
+    if (!user) res.status(404).json({ error: "User not found" });
+
+    await User.updateOne(
+      { email },
+      {
+        specialities: specialities.length ? specialities : user.specialities,
+        role,
+      }
+    );
+
+    return res.json({ message: "User updated successfully" });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "Update user failed", details: error.message });
+  }
+};
+
+export const getUsers = async (req, res) => {
+  try {
+    if (req.user.role !== "admin")
+      return res.status(403).json({ error: "User forbidden" });
+    const users = await User.find().select("-password");
+    return res.json(200).json(users);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "Could not get all users", details: error.message });
+  }
+};
