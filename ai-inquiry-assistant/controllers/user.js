@@ -39,7 +39,7 @@ export const signUp = async (req, res) => {
   }
 };
 
-export const signIn = async (req, res) => {
+export const logIn = async (req, res) => {
   const { email, password } = await req.body;
 
   // hashpassword
@@ -74,7 +74,7 @@ export const signIn = async (req, res) => {
   }
 };
 
-export const logout = async (req, res) => {
+export const logOut = async (req, res) => {
   try {
     // clearing token
 

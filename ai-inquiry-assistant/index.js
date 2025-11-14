@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
+import userRoutes from './routes/user.js'
 
 const PORT = process.env.PORT || 3000;
 
@@ -15,13 +16,13 @@ app.get("/", (req, res) => {
   res.send("Ai Inquiry assistant");
 });
 
-
+app.use("/api/auth",userRoutes)
 
 
 const connectToDb = async () => {
   try {
-    // const response = await mongoose.connect(process.env.MONGO_URI);
-    // console.log("connected ", response);
+    const response = await mongoose.connect(process.env.MONGO_URI);
+    console.log("connected ", response);
 
     app.listen(PORT, () => console.log("server at http://localhost:3000"));
   } catch (error) {
