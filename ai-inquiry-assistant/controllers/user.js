@@ -1,11 +1,10 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import User from "../models/user.models";
+import User from "../models/user.models.js";
 
 // inngest client
-import inngest from "../inngest/client.js";
-import User from "../models/user.models";
-
+import {inngest} from "../inngest/client.js";
+ 
 export const signUp = async (req, res) => {
   const { email, password, specialities = [] } = await req.body;
 

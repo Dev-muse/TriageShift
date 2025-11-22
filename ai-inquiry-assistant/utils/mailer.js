@@ -14,11 +14,11 @@ export const sendMail = async (to, subject, text) => {
     const info = await transporter.sendMail({
       from: "Inngest TMS",
       to,
-      subjec,
+      subject,
       text, // plain‑text body
     });
 
-    console.log("message send!: ", info.messageId);
+    console.log("message sent!: ", info.messageId);
     return info;
   } catch (error) {
     console.error("error on send Mail ", error);
