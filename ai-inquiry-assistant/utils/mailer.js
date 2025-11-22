@@ -18,7 +18,7 @@ export const sendMail = async (to, subject, text) => {
       text, // plain‑text body
     });
 
-    console.log("message sendt!: ", info.messageId);
+    console.log("message sent!: ", info.messageId);
     return info;
   } catch (error) {
     console.error("error on send Mail ", error);
